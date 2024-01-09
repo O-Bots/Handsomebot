@@ -1,0 +1,22 @@
+{
+  "name": "handsomebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-Bots/Cloud-Handsomebot.git"
+  },
+  "author": "O-Bots",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-Bots/Cloud-Handsomebot/issues"
+  },
+  "homepage": "https://github.com/O-Bots/Cloud-Handsomebot#readme",
+  "dependencies": {
+    "discord.js": "^11.6.4"
+  }
+}
