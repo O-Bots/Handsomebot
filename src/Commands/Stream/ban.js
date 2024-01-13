@@ -3,7 +3,7 @@ module.exports = {
     //deleted: Boolean,
     name: 'ban',
     description: 'Bans a member!!!',
-    // devOnly: Boolean,
+    devOnly: true,
     // testOnly: Boolean,
     options: [{
         name: 'target-user',
@@ -20,7 +20,7 @@ module.exports = {
     permissionsRequired: [PermissionFlagsBits.Administrator],
     botPermissions: [PermissionFlagsBits.Administrator],
 
-    callback: (client, interaction) => {
+    callback: (bot, interaction) => {
     interaction.reply('ban..');
     },
 };
