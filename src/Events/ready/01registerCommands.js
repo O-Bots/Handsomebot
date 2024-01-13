@@ -1,12 +1,14 @@
-const { testServer } = require('../../../config.json');
+const {testServer} = require('../../../config.json');
 const areCommandsDifferent = require('../../Utility/areCommandsDifferent');
-const getApplicationCommands = require('../../utility/getApplicationCommands');
-const getLocalCommands = require('../../utility/getLocalCommands');
+const getApplicationCommands = require('../../Utility/getApplicationCommands');
+const getLocalCommands = require('../../Utility/getLocalCommands');
 
 module.exports = async (bot) => {
     try {
         const localCommands = getLocalCommands();
         const applicationCommands = await getApplicationCommands(bot, testServer);
+        console.log(applicationCommands)
+        
     for (const localCommand of localCommands) {
         const { name, description, options } = localCommand;
 

@@ -2,7 +2,7 @@ const {ApplicationCommandOptionType, PermissionFlagsBits} = require('discord.js'
 module.exports = {
     //deleted: Boolean,
     name: 'ban',
-    description: 'Bans a member!!!',
+    description: 'Bans a member from the server.',
     devOnly: true,
     // testOnly: Boolean,
     options: [{
@@ -21,6 +21,6 @@ module.exports = {
     botPermissions: [PermissionFlagsBits.Administrator],
 
     callback: (bot, interaction) => {
-    interaction.reply('ban..');
+        interaction.reply('ban..');
     },
 };
