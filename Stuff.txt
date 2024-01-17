@@ -37,28 +37,30 @@
     name: 'played',
     description: 'Shares link to google doc listing the games that TwelveGauge has completed',
 
+------->BAN command
+const {ApplicationCommandOptionType, PermissionFlagsBits} = require('discord.js');
+module.exports = {
+    //deleted: Boolean,
+    name: 'ban',
+    description: 'Bans a member from the server!',
+    devOnly: true,
+    // testOnly: Boolean,
+    options: [{
+        name: 'target-user',
+        description: 'The user to ban.',
+        required: true,
+        type: ApplicationCommandOptionType.Mentionable,
+    },
+    {
+        name: 'reason',
+        description: 'The reason for banning.',
+        type: ApplicationCommandOptionType.String,
+    },
+    ],
+    permissionsRequired: [PermissionFlagsBits.Administrator],
+    botPermissions: [PermissionFlagsBits.Administrator],
 
-// require('dotenv').config();
-// const {REST, Routes, ApplicationCommandOptionType} = require('discord.js');
-
-// const commands = [
-//     {
-//         name: 'played',
-//         description: 'Shares link to google doc listing the games that TwelveGauge has completed',
-//     }
-// ];
-
-// const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
-
-// (async() => {
-//     try {
-//     console.log('Registering slash commands...');
-//         await rest.put(
-//             Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-//             {body: commands}
-//         );
-//     console.log('Slash command were registerd successfully')
-//     }catch(error) {
-//         console.log(`there was an error:${error}`);
-//     }
-// })();
+    callback: (bot, interaction) => {
+        interaction.reply('ban..');
+    },
+};
