@@ -36,7 +36,7 @@ module.exports = async (bot, interaction) => {
                         content: "Not enough permissions.",
                         ephemeral: true,
                     });
-                    break;
+                    return;
                 }
             }
         }
@@ -49,7 +49,7 @@ module.exports = async (bot, interaction) => {
                         content: "I don't have enough permissions.",
                         ephemeral: true,
                     });
-                    break;
+                    return;
                 }
             }
         }
