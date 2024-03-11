@@ -1,5 +1,3 @@
 module.exports = (bot) => {
-    bot.on('messageCreate', (message) =>{
-        console.log("I'm ready");
-    })
+    console.log("is this working");
 };
