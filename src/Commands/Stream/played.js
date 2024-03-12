@@ -3,8 +3,8 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = {
     name: 'played',
     description: 'Shares link to google doc listing the games that TwelveGauge has completed',
-    //devOnly: true,
-    //testOnly: Boolean,
+    // devOnly: true,
+    // testOnly: true,
     //deleted: Boolean,
 
     callback: (bot, interaction) => {
