@@ -10,10 +10,11 @@ module.exports = async (bot) => {
 
     for (const localCommand of localCommands) {
         const { name, description, options } = localCommand;
-
+        
         const existingCommand = await applicationCommands.cache.find(
         (cmd) => cmd.name === name
         );
+        
         if (existingCommand) {
             if (localCommand.deleted) {
                 await applicationCommands.delete(existingCommand.id);
