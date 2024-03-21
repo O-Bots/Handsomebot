@@ -17,7 +17,7 @@ module.exports = {
         const message = interaction.options.data[0].value;
         const interactionReplyMsg = await interaction.reply({ content: 'Check the thread!', fetchReply: true });
         const thread = await interactionReplyMsg.startThread({
-            name: `Completion times for the game ${message}`,
+            name: `Completion times for ${message}`,
             autoArchiveDuration: 60,
             reason: 'Shits n Giggs',
         });
