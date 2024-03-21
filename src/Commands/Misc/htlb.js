@@ -15,10 +15,12 @@ module.exports = {
     },
     ],
     callback: async (bot, interaction) => {
+
         const message = interaction.options.data[0].value;
+
         const hltbInfo = await howLongToBeat(message);
 
-        if (hltbInfo !== undefined) {
+        if (hltbInfo !== "No Games") {
 
             const interactionReplyMsg = await interaction.reply({ content: 'Check the thread!', fetchReply: true });
             

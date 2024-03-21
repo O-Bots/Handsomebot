@@ -4,6 +4,8 @@ const hltbService = new hltb.HowLongToBeatService();
 module.exports = async (gameName) => {
     
     let gameInforArr = [];
+    
+    const searchError = "No Games";
 
     try {
         const response = await hltbService.search(gameName);
@@ -11,7 +13,7 @@ module.exports = async (gameName) => {
 
         for (const game of games){
             
-            if (game.name.startsWith("Halo")) {
+            if (game.name.startsWith(gameName)) {
                 const gameInfo = {
                     Game:game.name,
                     MainStory: game.gameplayMain+"hrs",
@@ -28,7 +30,13 @@ module.exports = async (gameName) => {
         console.error(error);
     };
 
-    const gameInfoString = await JSON.stringify(gameInforArr).replace(/{|}/g, '').replace(/"/g, '').replace(/,/g, '\n').replace(/(Completionist:\d+hrs)/g, '$1\n').replace(/\[|\]/g, '');
-    
-    return gameInfoString
+    if (gameInforArr.length === 0) {
+        
+        return searchError;
+        
+    }else{
+        const gameInfoString = await JSON.stringify(gameInforArr).replace(/{|}/g, '').replace(/"/g, '').replace(/,/g, '\n').replace(/(Completionist:\d+hrs)/g, '$1\n').replace(/\[|\]/g, '');
+        
+        return gameInfoString
+    }
 };
