@@ -1,7 +1,7 @@
 require('dotenv').config();
-const {Client, IntentsBitField, Guild} = require('discord.js');
+const {Client, IntentsBitField } = require('discord.js');
 const eventHandler = require('./Handlers/eventHandler');
-
+const roles = require('./Utility/rolesArray');
 
 const bot = new Client({
     intents: [
@@ -11,6 +11,7 @@ const bot = new Client({
         IntentsBitField.Flags.MessageContent,
     ]
 });
+
 
 eventHandler(bot);
 
