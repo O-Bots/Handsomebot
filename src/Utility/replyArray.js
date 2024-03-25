@@ -1,8 +1,5 @@
 module.exports = [
-    {
-        msg: "mansam",
-        msgReply: "What? Did you call me Handsome?!!",
-    },
+
     {
         msg: "throw",
         msgReply: "Josh never threw! FACTS",
