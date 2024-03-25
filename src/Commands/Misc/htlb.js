@@ -6,7 +6,7 @@ module.exports = {
     //deleted: Boolean,
     name: 'hltb',
     description: 'checks how long it takes to beat the game requested!',
-    devOnly: true,
+    // devOnly: true,
     // testOnly: Boolean,
     options: [{
         name: 'game',
