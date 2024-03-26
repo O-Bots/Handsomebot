@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, IntentsBitField } = require('discord.js');
+const {Client, IntentsBitField, GuildChannel} = require('discord.js');
 const eventHandler = require('./Handlers/eventHandler');
 
 
@@ -13,8 +13,6 @@ const bot = new Client({
 });
 
 
-
 eventHandler(bot);
-
 
 bot.login(process.env.TOKEN);

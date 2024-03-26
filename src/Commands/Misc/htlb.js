@@ -1,4 +1,3 @@
-// const {gameError, emptyArr, gamesExport} = require('./../../Utility/howLongToBeat');
 const howLongToBeat = require('./../../Utility/howLongToBeat');
 const {ApplicationCommandOptionType, GuildTextThreadManager} = require('discord.js');
 

@@ -1,9 +1,10 @@
+const {roleServer} = require('../../../config.json');
 const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js');
 
 module.exports = async (bot) => {
     
     try {
-        const channel = await bot.channels.cache.get('1217198268929278044');
+        const channel = await bot.channels.cache.get(roleServer);
         if (!channel) return;
 
         let lastMessage = ""
