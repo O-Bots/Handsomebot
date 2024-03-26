@@ -3,7 +3,7 @@ const secretReplyArray = require("../../Utility/secretReplyArray");
 const prefix = "!"
 module.exports = (bot, message) => {
     
-    if (message.author.id !== process.env.CLIENT_ID) {
+    if (message.author.id !== process.env.DISCORD_BOT_ID) {
 
         for (let i = 0; i < secretReplyArray.length; i++) {
             const secret = secretReplyArray[i];

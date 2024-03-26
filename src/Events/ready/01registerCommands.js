@@ -6,7 +6,7 @@ const getLocalCommands = require('../../Utility/getLocalCommands');
 module.exports = async (bot) => {
     try {
         const localCommands = getLocalCommands();
-        const applicationCommands = await getApplicationCommands(bot, process.env.GUILD_ID);
+        const applicationCommands = await getApplicationCommands(bot, process.env.DISCORD_GUILD_ID);
 
     for (const localCommand of localCommands) {
         const { name, description, options } = localCommand;
