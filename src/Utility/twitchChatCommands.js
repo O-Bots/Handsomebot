@@ -1,47 +1,9 @@
-require('dotenv').config();
-const {Client, IntentsBitField, GuildChannel, time} = require('discord.js');
-const eventHandler = require('./Handlers/eventHandler');
-
-const bot = new Client({
-    intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildMembers,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.MessageContent,
-    ]
-});
-
-const axios = require('axios');
-
-const grantType = 'client_credentials';
-const scope = "";
-const tokenEndpoint = "https://id.twitch.tv/oauth2/token"
-const clipsEndpoint = "https://api.twitch.tv/helix/clips"
-const channelEndpoint = "https://api.twitch.tv/helix/channels"
-const userEndpoint = "https://api.twitch.tv/helix/users"
-
-bot.on('ready', async (bot) => {
-
-    // let gameName = ""
-    // await currentGame().then(res => gameName = res)
-        
-            
-    // if (await checkForGame(gameName) === false) {
-    //     addFinishedGame(gameName);
-        
-    // } else {
-    //     console.log("The game already exists");
-    // }
-
-});
-
 const tmi = require('tmi.js');
 const { currentGame } = require('./Utility/twitchUtils');
 const {checkForGame, addFinishedGame, addGame, gamesList} = require('./Utility/googleSheets')
 const {hltbFullName} = require('./Utility/howLongToBeat')
 
-bot.on('ready', async (bot) => {
-    
+module.exports = (bot) => {
     try {
         const prefix ="!"
 
@@ -61,7 +23,7 @@ bot.on('ready', async (bot) => {
         twitchBot.connect();
 
         twitchBot.on('message',  async (channel, tags, message, self) => {
-            if(self || !message.startsWith('!')) return;
+            if(self || !message.startsWith(prefix)) return;
             
             const messageArr = message.slice(1).split(' ');
 
@@ -149,8 +111,4 @@ bot.on('ready', async (bot) => {
         console.error(error);
         return null;
     };
-});
-
-eventHandler(bot);
-
-bot.login(process.env.DISCORD_BOT_TOKEN);
+};
