@@ -1,4 +1,5 @@
 const {memeServer} = require('./../../../config.json');
+const redditArr = require('./../../Utility/redditMemeArray')
 const redditService = require('reddit');
 
 const reddit = new redditService({
@@ -25,12 +26,15 @@ module.exports = async (bot, message) => {
                 postMemes();
             };
         });
-        
-    
+
         async function postMemes() {
+
             const getMessages = await channel.messages.fetch({limit: 10});
-    
-            const info = await reddit.get("/r/wholesomememes/hot", params = {
+            
+            const randomSubreddit = Math.floor(Math.random()* redditArr.subreddit.length);
+            const randomFilter = Math.floor(Math.random()* redditArr.filter.length);
+
+            const info = await reddit.get(`/r/${redditArr.subreddit[randomSubreddit]}/${redditArr.filter[randomFilter]}`, params = {
                 "limit": 4,
                 "count": 1
             });

@@ -1,7 +1,8 @@
 const tmi = require('tmi.js');
 const { currentGame } = require('./Utility/twitchUtils');
-const {checkForGame, addFinishedGame, addGame, gamesList} = require('./Utility/googleSheets')
-const {hltbFullName} = require('./Utility/howLongToBeat')
+const {checkForGame, addFinishedGame, addGame, gamesList} = require('./Utility/googleSheets');
+const {hltbFullName} = require('./Utility/howLongToBeat');
+const {noGames} = require('./../../config.json')
 
 module.exports = (bot) => {
     try {
@@ -88,7 +89,7 @@ module.exports = (bot) => {
                 let filteredSheetData = [];
                 
                 for (const data of sheetData) {
-                    if (data !== "No Games") {
+                    if (data !== noGames) {
                         filteredSheetData.push(`${data}`)
                     }
                 };

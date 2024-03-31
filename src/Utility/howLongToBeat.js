@@ -1,3 +1,4 @@
+const {noGames} = require('./../../config.json')
 const hltb = require('howlongtobeat');
 const hltbService = new hltb.HowLongToBeatService();
 
@@ -7,7 +8,7 @@ module.exports = {
         
         let gameInforArr = [];
         
-        const searchError = "No Games";
+        const searchError = noGames;
     
         try {
             const response = await hltbService.search(gameName);
@@ -46,7 +47,7 @@ module.exports = {
         
         let gameInforArr = [];
         
-        const searchError = "No Games";
+        const searchError = noGames;
     
         try {
             const response = await hltbService.search(gameName);
@@ -74,10 +75,8 @@ module.exports = {
             return searchError;
             
         }else{
-            // const gameInfoString = await JSON.stringify(gameInforArr).replace(/{|}/g, '').replace(/"/g, '').replace(/,/g, '\n').replace(/(Completionist:\d+hrs)/g, '$1\n').replace(/\[|\]/g, '');
 
             return gameInforArr
-            // return gameInfoString
-        }
+        };
     },
 };

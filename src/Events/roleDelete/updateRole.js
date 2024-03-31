@@ -1,4 +1,4 @@
-const {roleServer} = require('../../../config.json');
+const {roleServer, ignoreRoles} = require('../../../config.json');
 const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js');
 
 module.exports = async (bot) => {
@@ -12,7 +12,6 @@ module.exports = async (bot) => {
         const row = new ActionRowBuilder();
         const roleMessage = "Claim or remove a Role"
 
-        const ignoreRoles = ["HandsomeBot", "HandsomeStreamBot", "Free Stuff", "@everyone", "The Black Order", "Doom Bots", "S.H.I.E.L.D", "Twitch Subscriber", "Twitch Subscriber: Tier 1", "Twitch Subscriber: Tier 2", "Twitch Subscriber: Tier 3"];
         const serverRoles = await bot.guilds.cache.flatMap((guild) => guild.roles.cache).map((role) => `${role.name}, ${role.id}`)
         
         const splitRoles = await serverRoles.map(item => {

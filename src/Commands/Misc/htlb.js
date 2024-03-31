@@ -1,5 +1,6 @@
-const howLongToBeat = require('./../../Utility/howLongToBeat');
+const {hltbGeneral} = require('./../../Utility/howLongToBeat');
 const {ApplicationCommandOptionType, GuildTextThreadManager} = require('discord.js');
+const {noGames} = require('./../../../config.json')
 
 module.exports = {
     //deleted: Boolean,
@@ -17,9 +18,9 @@ module.exports = {
 
         const message = interaction.options.data[0].value;
 
-        const hltbInfo = await howLongToBeat(message);
+        const hltbInfo = await hltbGeneral(message);
 
-        if (hltbInfo !== "No Games") {
+        if (hltbInfo !== noGames) {
 
             const interactionReplyMsg = await interaction.reply({ content: 'Check the thread!', fetchReply: true });
             

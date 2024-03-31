@@ -4,5 +4,7 @@
     "streamNotification": "1222534175467376710",
     "memeServer": "1222577108115521611",
     "clipsServer": "1222935252767604777",
-    "devs": ["145652738322071553"]
+    "noGames": "No Games",
+    "devs": ["145652738322071553"],
+    "ignoreRoles": ["HandsomeBot", "HandsomeStreamBot", "Free Stuff", "@everyone", "The Black Order", "Doom Bots", "S.H.I.E.L.D", "Twitch Subscriber", "Twitch Subscriber: Tier 1", "Twitch Subscriber: Tier 2", "Twitch Subscriber: Tier 3"]
 }
