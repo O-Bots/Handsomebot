@@ -6,24 +6,24 @@ module.exports = {
     
     hltbGeneral: async (gameName) => {
         
-        let gameInforArr = [];
+        let gameGeneralInforArr = [];
         
         const searchError = noGames;
     
         try {
             const response = await hltbService.search(gameName);
             const games = await response;
-    
+            
             for (const game of games){
                 
-                if (game.name.startsWith(gameName)) {
+                if (game.name.toLocaleLowerCase().startsWith(gameName.toLocaleLowerCase())) {
                     const gameInfo = {
                         Game:game.name,
                         MainStory: game.gameplayMain+"hrs",
                         MainStoryExtra: game.gameplayMainExtra+"hrs",
                         Completionist: game.gameplayCompletionist+"hrs",
                     };
-                    gameInforArr.push(gameInfo)
+                    gameGeneralInforArr.push(gameInfo)
                 }else{
                     continue;
                 };
@@ -33,12 +33,12 @@ module.exports = {
             console.error(error);
         };
     
-        if (gameInforArr.length === 0) {
+        if (gameGeneralInforArr.length === 0) {
             
             return searchError;
             
         }else{
-            const gameInfoString = await JSON.stringify(gameInforArr).replace(/{|}/g, '').replace(/"/g, '').replace(/,/g, '\n').replace(/(Completionist:\d+hrs)/g, '$1\n').replace(/\[|\]/g, '');
+            const gameInfoString = await JSON.stringify(gameGeneralInforArr).replace(/{|}/g, '').replace(/"/g, '').replace(/,/g, '\n').replace(/(Completionist:\d+hrs)/g, '$1\n').replace(/\[|\]/g, '');
 
             return gameInfoString
         }
