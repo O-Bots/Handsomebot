@@ -55,7 +55,7 @@ module.exports = {
     
             for (const game of games){
                 
-                if (game.name == gameName) {
+                if (game.name.toLocaleLowerCase() == gameName.toLocaleLowerCase()) {
                     const gameInfo = [
                         game.name,
                         game.gameplayMain

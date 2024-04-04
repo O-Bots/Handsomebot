@@ -1,14 +1,16 @@
 const tmi = require('tmi.js');
 const { currentGame } = require('./../../Utility/twitchUtils');
-const {checkForGame, addFinishedGame, addGame, gamesList} = require('./../../Utility/googleSheets');
+const {checkForGame, addFinishedGame, addGame, getSheetNames} = require('./../../Utility/googleSheets');
 const {hltbFullName} = require('./../../Utility/howLongToBeat');
-const {noGames} = require('./../../../config.json');
+const {noGames, completedGamesSheetName} = require('./../../../config.json');
 const commands = require('./../../Utility/commandArray');
 const totalGameTimeFromSheet = require('./../../Utility/totalGameTimeFromSheet');
 
 let lastSheetCmdTime = 0;
 let lastCmdTime = 0;
-module.exports = () => {
+
+
+module.exports = async  () => {
     try {
         const prefix ="!"
 
@@ -38,6 +40,8 @@ module.exports = () => {
 
             const gameNameMsg = gameInfo.join().replace(/,/g, " ");
             
+            const sheetNamesArr = await getSheetNames();
+
             //Add the the games I want to play command
             if (command.toLocaleLowerCase() === "Help".toLocaleLowerCase()) {
                 
@@ -46,7 +50,7 @@ module.exports = () => {
             };
 
             //Check if the game is already in a list
-            if (command.toLocaleLowerCase() !== "Hltb".toLocaleLowerCase()) {
+            if ((command.toLocaleLowerCase() !== "Hltb".toLocaleLowerCase()) && (!sheetNamesArr.includes(command.toLocaleLowerCase()))) {
                 
                 if (await checkForGame(gameNameMsg.toLocaleLowerCase(), command.toLocaleLowerCase()) === true) {
                     twitchBot.say(channel, `@${tags.username}, ${gameNameMsg} is already in the list, did you enter the correct name?`);
@@ -55,7 +59,7 @@ module.exports = () => {
             };
 
             //This is to stop people from running the Played list through the hltb function
-            if (gameNameMsg.toLocaleLowerCase() === "Played".toLocaleLowerCase()) {
+            if (gameNameMsg.toLocaleLowerCase() === completedGamesSheetName.toLocaleLowerCase()) {
                 twitchBot.say(channel, `@${tags.username}, the ${gameNameMsg} list of games are already complete, feel free to check any of the other sheets`);
                 return;
             };
@@ -68,26 +72,18 @@ module.exports = () => {
                 return;
             };
 
-            //Add a requested game command
-            if ((command.toLocaleLowerCase() === "Requests".toLocaleLowerCase()) && (tags.username === process.env.TWITCH_USERNAME)) {
+            //Update the list of games to be played
+            if ((sheetNamesArr.includes(command.toLocaleLowerCase())) && (tags.username === process.env.TWITCH_USERNAME)) {
 
                 addGame(gameNameMsg, command.toLocaleLowerCase());
                 
-                twitchBot.say(channel, `@${tags.username}, ${gameNameMsg} has been added to the list of requested games!`);
+                twitchBot.say(channel, `@${tags.username}, ${gameNameMsg} has been added to the list!`);
                 return;
             };
 
-            //Add the the games I want to play command
-            if ((command.toLocaleLowerCase() === "Playlist".toLocaleLowerCase()) && (tags.username === process.env.TWITCH_USERNAME)) {
-                
-                addGame(gameNameMsg, command.toLocaleLowerCase());
-                
-                twitchBot.say(channel, `@${tags.username}, ${gameNameMsg} has been added to the list of games you are interested in!`);
-                return;
-            };
-
+            if (gameNameMsg.toLocaleLowerCase() === completedGamesSheetName.toLocaleLowerCase()) return;
             //Check how long it will take to comeplete the requested games
-            if ((command.toLocaleLowerCase() === "Hltb".toLocaleLowerCase()) && (gameNameMsg.toLocaleLowerCase() === "Requests".toLocaleLowerCase() || gameNameMsg.toLocaleLowerCase() === "Playlist".toLocaleLowerCase())) {
+            if ((command.toLocaleLowerCase() === "Hltb".toLocaleLowerCase()) && (sheetNamesArr.includes(gameNameMsg.toLocaleLowerCase()))) {
                 
                 const sheetsTimeNow = new Date().getTime()
 

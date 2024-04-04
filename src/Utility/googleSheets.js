@@ -1,8 +1,9 @@
 const {google} = require('googleapis');
+const {completedGamesSheetName} = require('./../../config.json');
 
 module.exports = {
     
-    checkForGame: async(game, sheetName = "played") => {
+    checkForGame: async(game, sheetName = completedGamesSheetName) => {
         
         try {
             const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID
@@ -29,7 +30,7 @@ module.exports = {
             console.error(error);
         };
     },
-    addFinishedGame: async(game, sheetName = "played") => {
+    addFinishedGame: async(game, sheetName = completedGamesSheetName) => {
         
         try {
             const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID
@@ -126,5 +127,33 @@ module.exports = {
             console.error(error);
         };
     },
+    getSheetNames: async () => {
+        try {
+            let sheetNames = [];
+            const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID
+            const auth = new google.auth.GoogleAuth({
+                keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEYFILE,
+                scopes: "https://www.googleapis.com/auth/spreadsheets"
+            });
+        
+            const client = await auth.getClient();
+        
+            const sheets = google.sheets({ version: "v4", auth: client});
+    
+            const sheetData = await sheets.spreadsheets.get({
+                auth,
+                spreadsheetId,
+            });
+            
+            for (let i = 0; i < sheetData.data.sheets.length; i++) {
+                sheetNames.push(sheetData.data.sheets[i].properties.title)
+            };
+            
+            return sheetNames
+            
+        } catch (error) {
+            console.error(error);
+        };
+    }
     
 };

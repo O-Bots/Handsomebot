@@ -42,21 +42,19 @@ module.exports = async (bot, message) => {
             })
     
             if ((lastMessage !== undefined) && (lastMessage.author.bot)) {
-                if (lastMessage.components[0].components.length !== cleanedRoles.length) {
-    
-                    cleanedRoles.forEach((role) => {
-                        row.components.push(
-                            new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary)
-                        )
-                    })
-            
-                    await lastMessage.edit({
-                        content: roleMessage,
-                        components: [row]
-                    });
-                } else {
-                    return;
-                };
+                
+                if (lastMessage.components[0].components.length === cleanedRoles.length) return;
+
+                cleanedRoles.forEach((role) => {
+                    row.components.push(
+                        new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary)
+                    )
+                })
+        
+                await lastMessage.edit({
+                    content: roleMessage,
+                    components: [row]
+                });
                 
             } else {
     
