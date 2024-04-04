@@ -18,10 +18,10 @@ module.exports = {
             const gameNameData = await sheets.spreadsheets.values.get({
                 auth,
                 spreadsheetId,
-                range: `${sheetName}!A:A`
+                range: `${sheetName.toLocaleLowerCase()}!A:A`
             });
         
-            const gamesCompleted = gameNameData.data.values.flat().includes(game);
+            const gamesCompleted = await gameNameData.data.values.flat().toLocaleString().toLocaleLowerCase().includes(game);
         
             return gamesCompleted
             
@@ -47,7 +47,7 @@ module.exports = {
             const addData = await sheets.spreadsheets.values.append({
                 auth,
                 spreadsheetId,
-                range: `${sheetName}!A:B`,
+                range: `${sheetName.toLocaleLowerCase()}!A:B`,
                 valueInputOption: "USER_ENTERED",
                 resource: {
                     values: [
@@ -82,7 +82,7 @@ module.exports = {
             const addData = await sheets.spreadsheets.values.append({
                 auth,
                 spreadsheetId,
-                range: `${sheetName}!A1`,
+                range: `${sheetName.toLocaleLowerCase()}!A1`,
                 valueInputOption: "USER_ENTERED",
                 resource: {
                     values: [
