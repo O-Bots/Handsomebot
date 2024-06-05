@@ -7,7 +7,7 @@ module.exports = async (sheetName) => {
     let spreadhsheetGames = []
     
     for (let i = 0; i < spreadhsheetList.length; i++) {
-        // const element = spreadhsheetList[i];
+
         spreadhsheetGames.push(await hltbFullName(spreadhsheetList[i]))
     }
     const sheetData = await spreadhsheetGames.flat()

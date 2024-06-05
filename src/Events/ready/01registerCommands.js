@@ -1,4 +1,4 @@
-// const {testServer} = require('../../../config.json');
+// const {discordTestServer} = require('../../../config.json');
 const areCommandsDifferent = require('../../Utility/areCommandsDifferent');
 const getApplicationCommands = require('../../Utility/getApplicationCommands');
 const getLocalCommands = require('../../Utility/getLocalCommands');

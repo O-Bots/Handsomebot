@@ -1,10 +1,10 @@
-const {roleServer, ignoreRoles} = require('../../../config.json');
+const {discordRoleServer, ignoreRoles} = require('../../../config.json');
 const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js');
 
 module.exports = async (bot) => {
     
     try {
-        const channel = await bot.channels.cache.get(roleServer);
+        const channel = await bot.channels.cache.get(discordRoleServer);
         if (!channel) return;
 
         let lastMessage = ""

@@ -1,5 +1,5 @@
-const {memeServer} = require('./../../../config.json');
-const redditArr = require('./../../Utility/redditMemeArray')
+const {discordMemeServer} = require('./../../../config.json');
+const redditArr = require('./../../Utility/commandArray')
 const redditService = require('reddit');
 
 const reddit = new redditService({
@@ -9,58 +9,61 @@ const reddit = new redditService({
     appSecret: process.env.REDDIT_APP_SECRET,
 });
 module.exports = async (bot, message) => {
-    try {
-        const today = new Date();
-        const yesterday = new Date(today.setDate(today.getDate() -1));
     
-        const channel = await bot.channels.cache.get(memeServer);
+    setInterval(async () => {
+        try {
+            const today = new Date();
+            const yesterday = new Date(today.setDate(today.getDate() -1));
         
-        if(!channel) return;
-        
-        const getLastMsg = await channel.messages.fetch({limit: 1});
-        
-        await getLastMsg.forEach(msg => {
-            dateCreated = new Date(msg.createdTimestamp);
-    
-            if (dateCreated < yesterday) {      
-                postMemes();
-            };
-        });
-
-        async function postMemes() {
-
-            const getMessages = await channel.messages.fetch({limit: 10});
+            const channel = await bot.channels.cache.get(discordMemeServer);
             
-            const randomSubreddit = Math.floor(Math.random()* redditArr.subreddit.length);
-            const randomFilter = Math.floor(Math.random()* redditArr.filter.length);
-
-            const info = await reddit.get(`/r/${redditArr.subreddit[randomSubreddit]}/${redditArr.filter[randomFilter]}`, params = {
-                "limit": 4,
-                "count": 1
-            });
-    
-            let msgArr = [];
-            await getMessages.forEach(msg => {
-                msgContent = msg.content;
-                msgArr.push(msgContent)
-            });
-    
-            let postArr = [];
-            await info.data.children.forEach(post => {
-                postUrl = post.data.url,
-                postHint = post.data.post_hint
-                postArr.push({url:postUrl,hint:postHint})
-    
-            });
-            for (let i = 0; i < postArr.length; i++) {
-                const post = postArr[i]
-                if ((post.hint !== undefined) && (!msgArr.includes(post.url))) {
-                    channel.send(post.url);
-                }
-            };
-        };
+            if(!channel) return;
+            
+            const getLastMsg = await channel.messages.fetch({limit: 1});
+            
+            await getLastMsg.forEach(msg => {
+                dateCreated = new Date(msg.createdTimestamp);
         
-    } catch (error) {
-        console.error(error);
-    };
+                if (dateCreated < yesterday) {      
+                    postMemes();
+                };
+            });
+    
+            async function postMemes() {
+    
+                const getMessages = await channel.messages.fetch({limit: 20});
+                
+                const randomSubreddit = Math.floor(Math.random()* redditArr.redditSubreddit.length);
+                const randomFilter = Math.floor(Math.random()* redditArr.redditFilter.length);
+    
+                const info = await reddit.get(`/r/${redditArr.redditSubreddit[randomSubreddit]}/${redditArr.redditFilter[randomFilter]}`, params = {
+                    "limit": 10,
+                    "count": 1
+                });
+        
+                let msgArr = [];
+                await getMessages.forEach(msg => {
+                    msgContent = msg.content;
+                    msgArr.push(msgContent)
+                });
+        
+                let postArr = [];
+                await info.data.children.forEach(post => {
+                    postUrl = post.data.url,
+                    postHint = post.data.post_hint
+                    postArr.push({url:postUrl,hint:postHint})
+        
+                });
+                for (let i = 0; i < postArr.length; i++) {
+                    const post = postArr[i]
+                    if ((post.hint !== undefined) && (!msgArr.includes(post.url))) {
+                        channel.send(post.url);
+                    }
+                };
+            };
+            
+        } catch (error) {
+            console.error(error);
+        };
+    }, 300000);
 };

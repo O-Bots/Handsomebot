@@ -1,19 +1,19 @@
-const {roleServer, devs, ignoreRoles} = require('../../../config.json');
+const {discordRoleServer, devs, ignoreRoles, prefix} = require('../../../config.json');
 const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js');
 
 module.exports = async (bot, message) => {
     
-    if ((devs.includes(message.author.id)) && (message.content.toLocaleLowerCase() === "!updateRoles".toLocaleLowerCase())) {
+    if ((devs.includes(message.author.id)) && (message.content.toLocaleLowerCase() === prefix+"updateRoles".toLocaleLowerCase())) {
         updateRoleMessage();
 
         message.reply({
-            content: `The roles in <#${roleServer}> have been updated`,
+            content: `The roles in <#${discordRoleServer}> have been updated`,
         });
     };
 
     async function updateRoleMessage() {
         try {
-            const channel = await bot.channels.cache.get(roleServer);
+            const channel = await bot.channels.cache.get(discordRoleServer);
             if (!channel) return;
     
             let lastMessage = ""

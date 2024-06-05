@@ -1,6 +1,7 @@
 const replyArray = require("../../Utility/replyArray");
 const secretReplyArray = require("../../Utility/secretReplyArray");
-const prefix = "!"
+const {prefix} = require("../../../config.json")
+
 module.exports = (bot, message) => {
     
     if (message.author.id === process.env.DISCORD_BOT_ID) return;
@@ -16,23 +17,22 @@ module.exports = (bot, message) => {
     };
     for (let i = 0; i < replyArray.length; i++) {
         const reply = replyArray[i];
-
-        if(message.content !== prefix+reply.msg) return;
-
-        if(Array.isArray(reply.msgReply)) {
-
-            rngReply = Math.floor(Math.random()* reply.msgReply.length);
+        
+        if(message.content === prefix+reply.msg) {
+            if(Array.isArray(reply.msgReply)) {
+                
+                rngReply = Math.floor(Math.random()* reply.msgReply.length);
+                message.reply({
+                    content: reply.msgReply[rngReply]
+                });
+                return;
+                
+            };
+            
             message.reply({
-                content: reply.msgReply[rngReply]
+                content: reply.msgReply
             });
             return;
-
-        };
-        
-        message.reply({
-            content: reply.msgReply
-        });
-        return;
+        }
     };
-
 };

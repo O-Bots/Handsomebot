@@ -1,4 +1,4 @@
-const {devs, testServer} = require('../../../config.json');
+const {devs, discordTestServer} = require('../../../config.json');
 const getLocalCommands = require('../../Utility/getLocalCommands');
 
 module.exports = async (bot, interaction) => {
@@ -21,7 +21,7 @@ module.exports = async (bot, interaction) => {
             }
         }
         if (commandObject.testOnly) {
-            if (!(interaction.channelId === testServer)) {
+            if (!(interaction.channelId === discordTestServer)) {
                 interaction.reply({
                     content: "This command cannot be ran here.",
                     ephemeral: true,

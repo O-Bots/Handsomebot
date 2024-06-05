@@ -1,5 +1,9 @@
 module.exports = {
-        discord: ["wholesomememes", "Funnymemes", "dankmemes"],
-        twitch: ["!games links a spreadsheet with the list of games. | !Hltb find out how long to beat a game,"
-        ],
+        twitch: ["games", "Hltb", "Finished"],
+        twitchObject: {
+                hltb: "Hltb",
+                finished:"Finished",
+        },
+        redditSubreddit: ["wholesomememes", "Funnymemes", "dankmemes"],
+        redditFilter: ["top", "hot",]
 };
