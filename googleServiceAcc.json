@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "handsomebot",
+  "private_key_id": "4fb2cc40248eb3eb6031d4d688aecda79033c186",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDz0+8L8ARmMCBo\nG19TYf/9JMbnPscEgAMD4yTR7Z97wuzZrtpYeIqSn4PxHEXracl+w67mBWwMiTiB\njmkeYSvby3gr0c2dUzqnp4YZtqdvW7kPxMAPT8JDJKIyL3DtY7VhfFeWf9q483oN\nocqbPbt+p9j7cIfzjH/un1LHBrXBi94r8LSyX5fIxzpXuBb2ZVOy/dDvjl6MP4SB\ne1ivcL+IcBlOzBDIfmb0ZbqdawCJKWFbhZx96iJuYINOP33x/KrLy+Q3SqBachHg\nKQ2TEVXsNlCRzH9cCfjfkNfpkGJ1DH+CpGvcEJUkSGueGYyjCBzuOCAvLZ5f+SpL\nudU7+o/hAgMBAAECggEAYqGcBMGyHd4g9cwAyxuM8EtEtH1GB1F7JsLm/Y54YZlv\nsvzSsVANihNBzbJIrFpuGjuxD7Yox4dolqvTZOkc0zvi4CLt4FKvGuueyN8Eqvy5\nByJpKKh0ZjG29MMRFM4tLIKecbBFe2RuPn5wlUyrACiIkump7QCsLYxAcWcK9f/C\nko50fb6u0PxXJWYzXvJStTiC7gUcwdsUss6pvunbl5db0D2GOZy3TAKoOBt3svTF\n1w7v1k/T7uj1kyyWGQEuYtjeT/lysmCv7H4Wp7axfRhWyPoW8Cv9qnOYtJI0tnNp\n6aRSSw4sMgKC32ms2SGuk5BgZwRu+5Q41nWwJNZGmwKBgQD/IwKbk5dZ7NbRjbzk\ndghZVdzWgofaYIYm++4xOwyhzsTzMMi/mHXorjRUUS+cgwZ0Fka+vS0NUbzNE6Cx\nGlkW9dKriNuHOwCgvLqRaXOHddc8y6Fk35Et/XxepxuaRl+hNUg9RN3PG5HByjrt\n/jDNU4r5TrJ0GFc5oj3nwThRvwKBgQD0pyDVS6eNuhJyiPNfc4SizXYb4rHoYch0\nAg8491BIEJ3aTX2vbysUPjoMth59k3Dmj5HCUjBV+3coGkJ4pCNNCKJYPs56pCUD\nI46XdDIIWIZQHqIckwe9cRdJe3C6ccITUil2KonPezCgc6urUeuCrOJek68kPBTU\nZ7y6GMZGXwKBgQDvDv/fhHBZWxiBq1wleQ8jnddZy1692Jl6p64sxNZ2OobCE6DW\nHWXFio0PwC5raT2/wiuxhxJSm5bbVRvJNhXp9JXcElUYJcnV0mDB5VvRvjHaDjcA\njJa8z/obulqbuHrcU0+H0SJAb+Wn/fQvkXBqw2/BX+LH8xKvtvxoTdyWgwKBgDa6\n8KBmtUwCVUAkHPW8fO6CsipY013eCh7RmyAuS1pjxTxh230UjHmR1iCj2TxUcIxT\nj9L92exSPfzNqxMb/P2tscu1+TD8aX9DRBHjn5G4ZAumXrOvvKqHkyMQJ06+RiFW\nXwodSAkPUPiEB+JiiCIKlPV9ak/b1PkTX+ftxOVXAoGBAI2lhRjG81Gg/u+6mQjp\nWyb3GBMDHwkq3Wu9ldGEob5THq9iwq663Eg5f+1YYbXk81oseTZce7mA7WJYbsyx\nhzWoIyORgTKIXH+lM6xGSRUIXzOURi6ta2WJ0DmaB2wO0209xXuifRomHUPRLJip\nAxUjlhdQDvusVhzgxVVDJUlv\n-----END PRIVATE KEY-----\n",
+  "client_email": "handsomebotsheets@handsomebot.iam.gserviceaccount.com",
+  "client_id": "100020291061108033895",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/handsomebotsheets%40handsomebot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

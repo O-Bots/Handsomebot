@@ -1,5 +1,14 @@
 {
-    "testServer": "620289267247218747",
-    "clientId": "611766099335446548",
-    "devs": ["145652738322071553"]
+    "prefix": "!",
+    "discordTestServer": "620289267247218747",
+    "discordRoleServer": "1217198268929278044",
+    "streamNotification": "1222534175467376710",
+    "discordMemeServer": "1222577108115521611",
+    "discordClipsServer": "1222935252767604777",
+    "discordStreamServer": "1222534175467376710",
+    "discordErrorServer": "1225822348158959706",
+    "noGames": "No Games",
+    "completedGamesSheetName": "Played",
+    "devs": ["145652738322071553"],
+    "ignoreRoles": ["HandsomeBot", "HandsomeStreamBot", "Free Stuff", "@everyone", "The Black Order", "Doom Bots", "S.H.I.E.L.D", "Twitch Subscriber", "Twitch Subscriber: Tier 1", "Twitch Subscriber: Tier 2", "Twitch Subscriber: Tier 3"]
 }

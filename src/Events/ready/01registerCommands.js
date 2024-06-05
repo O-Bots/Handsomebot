@@ -1,18 +1,20 @@
-const { testServer } = require('../../../config.json');
+// const {discordTestServer} = require('../../../config.json');
 const areCommandsDifferent = require('../../Utility/areCommandsDifferent');
-const getApplicationCommands = require('../../utility/getApplicationCommands');
-const getLocalCommands = require('../../utility/getLocalCommands');
+const getApplicationCommands = require('../../Utility/getApplicationCommands');
+const getLocalCommands = require('../../Utility/getLocalCommands');
 
-module.exports = async (client) => {
+module.exports = async (bot) => {
     try {
         const localCommands = getLocalCommands();
-        const applicationCommands = await getApplicationCommands(client, testServer);
+        const applicationCommands = await getApplicationCommands(bot, process.env.DISCORD_GUILD_ID);
+
     for (const localCommand of localCommands) {
         const { name, description, options } = localCommand;
-
+        
         const existingCommand = await applicationCommands.cache.find(
         (cmd) => cmd.name === name
         );
+        
         if (existingCommand) {
             if (localCommand.deleted) {
                 await applicationCommands.delete(existingCommand.id);

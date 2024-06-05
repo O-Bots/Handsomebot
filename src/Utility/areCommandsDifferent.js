@@ -1,49 +1,59 @@
-module.exports = (existingCommand, localCommand) => {
-    const areChoicesDifferent = (existingChoices, localChoices) => {
-        for (const localChoice of localChoices) {
-            const existingChoice = existingChoices?.find((choice) => choice.name === localChoice.name);
+module.exports = (existing, local) => {
+    const changed = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
 
-            if (!existingChoice) {
-                return true;
-            }
-            if (localChoice.value !== existingChoice.value) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    const areOptionsDifferent = (existingOptions, localOptions) => {
-        for (const localOption of localOptions) {
-            const existingOption = existingOptions?.find((option) => option.name === localOption.name);
-
-            if (!existingOption) {
-                return true;
-            }
-            if (
-                localOption.description !== existingOption.description ||
-                localOption.type !== existingOption.type ||
-                (localOption.required || false) !== existingOption.required ||
-                (localOption.choices?.length || 0) !==
-                (existingOption.choices?.length || 0) ||
-                areChoicesDifferent(
-                localOption.choices || [],
-                existingOption.choices || []
-                )
-            ) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    if (
-        existingCommand.description !== localCommand.description ||
-        existingCommand.options?.length !== (localCommand.options?.length || 0) ||
-        areOptionsDifferent(existingCommand.options, localCommand.options || [])
-    ) {
+    if (changed(existing.name, local.name) || changed(existing.description || undefined, local.description || undefined)) {
         return true;
-    }
+    };
 
-    return false;
+    const optionsChanged = changed(optionsArray(existing), optionsArray(local));
+
+    return optionsChanged;
+
+    function optionsArray(cmd) {const cleanObject = (obj) => {
+        for (const key in obj) {
+            if (typeof obj[key] === "object") {
+                cleanObject(obj[key]);
+                    if (!obj[key] || (Array.isArray(obj[key]) && !obj[key].length)) {
+                        delete obj[key];
+                    }
+            } else if (obj[key] === undefined) {
+            delete obj[key];
+            };
+        };
+    };
+
+    const normalizeObject = (input) => {
+        if (Array.isArray(input)) {
+            return input.map((item) => normalizeObject(item));
+        };
+
+        const normalizedItem = {
+            type: input.type,
+            name: input.name,
+            description: input.description,
+            options: input.options ? normalizeObject(input.options) : undefined,
+            required: input.required,
+        };
+
+        return normalizedItem;
+    };
+
+    return (cmd.options || []).map((option) => {
+        let cleanedOption = JSON.parse(JSON.stringify(option));
+        cleanedOption.options
+        ? (cleanedOption.options = normalizeObject(cleanedOption.options))
+        : (cleanedOption = normalizeObject(cleanedOption));
+        cleanObject(cleanedOption);
+            return {
+            ...cleanedOption,
+            choices: cleanedOption.choices
+            ? stringifyChoices(cleanedOption.choices)
+            : null,
+        };
+    });
+    };
+
+    function stringifyChoices(choices) {
+        return JSON.stringify(choices.map((c) => c.value));
+    };
 };
