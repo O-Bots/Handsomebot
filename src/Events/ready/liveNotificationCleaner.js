@@ -1,11 +1,11 @@
-const {streamNotification} = require('./../../../config.json');
+const {discordStreamServer} = require('./../../../config.json');
 
 module.exports = async (bot) => {
     setInterval(async () => {
         const dateToday = new Date();
         const weekOld = new Date(dateToday.setDate(dateToday.getDate() -7));
         
-        const channel = await bot.channels.cache.get(streamNotification);
+        const channel = await bot.channels.cache.get(discordStreamServer);
         
         if(!channel) return;
         
