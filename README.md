@@ -60,7 +60,22 @@ TWITCH_BOT_OAUTH_TOKEN =
 GOOGLE_SPREADSHEET_ID = 
 GOOGLE_SERVICE_ACCOUNT_KEYFILE = 
 ```
-4. Run the Bot:
+4. Environment Variables:
+Add server(channel) id information to the config.json file in the root directory:
+```Config
+    "prefix": "!",
+    "discordTestServer": "InsertIDHere",
+    "discordRoleServer": "InsertIDHere",
+    "discordStreamServer": "InsertIDHere",
+    "discordMemeServer": "InsertIDHere",
+    "discordClipsServer": "InsertIDHere",
+    "discordErrorServer": "InsertIDHere",
+    "noGames": "No Games",
+    "completedGamesSheetName": "Played",
+    "devs": ["InsertIDHere"],
+    "ignoreRoles": ["Twitch Subscriber: Tier 2", "Twitch Subscriber: Tier 3"]
+```
+5. Run the Bot:
 ```bash
 nodemon
 ```
